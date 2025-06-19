@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .scrollImage {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      display: block;
+    }
+    .scrollImage.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fixed-canvas {
+      width: 1600px;
+      margin: 0 auto;
+      position: relative;
+      min-height: 3200px;
+    }
+    #three-canvas {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    }
+    #three-canvas.visible {
+    opacity: 1;
+    }
+    #intro-text {
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #2c2c2c;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-weight: bold;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+    max-width: 100%;
+    }
+    #intro-text.visible {
+    opacity: 1;
+    }
+    #intr-text {
+    position: fixed;
+    top: 25%;
+    max-width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #af5353;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-weight: bold;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+    }
+    #intr-text.visible {
+    opacity: 1;
+    }
+    </style>
+</head>
+<body style="overflow-y:hidden; overflow-x: hidden; background-color: #171717;">
+<div id="intro-text">Республика Саха (Якутия)</div>
+<div id="intr-text">Животные Якутии</div>
+<div id="canvi">
+<canvas id="three-canvas"></canvas>
+</div>
+<div id="yakutsk-site" style="display:none;position:absolute;top:2%;left:0;width:100%;height:100%;z-index:10;overflow:auto;">
+<div id="back-to-3d" style="position: fixed; width: 4em; height: 4em; background-color: white; color: black; font-family: inter; border-radius: 20%; margin-top: 1%; margin-left: 2%; text-align: center; z-index: 20;">
+<div style="font-size: 2.5em; margin-top: 20%;"><b>←</b></div>
+</div>
+<div class="fixed-canvas">
+  <div style="font-size: 1.5em; display: flex; justify-content: space-between; font-family: inter; color: white;">
+    <div style="text-align: left;">RS(Y)</div>
+    <div style="text-align: center; flex-grow: 1;">YAKUTSK</div>
+    <div style="text-align: right;">ST // 05-25</div>
+  </div>  
+
+  <div style="padding-top: 1%;">
+    <div style="background-image: url(yakutsk/yak.png); background-size: 100% 100%; width: 100%; height: 800px; position: relative;">
+      <div style="color: white; font-family: inter; position: absolute; font-size: 10em; margin-top: 600px; text-shadow: 2px 2px 8px #000000;"><b>ДЬОКУУСКАЙ</b></div>
+    </div>
+  </div>
+  <div style="color: white; font-family: inter; text-align: center; margin-top: 1%; font-size: 1.5em">129° 40' 31.7136'' E</div>
+
+  <!-- 1 -->
+  <div>
+    <div class="scrollImage" style="background: white; width: 5%; height: 5em; margin-top: 2%">
+      <p class="scrollImage" style="color: black; font-family: inter; text-align: right; font-size: 4em; margin-right: 15%;"><b>1</b></p>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <div style="background: white; width: 5%; height: 2em;"></div>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img src="yakutsk/linet.svg" style="width: 50%; margin-top: 2%">
+    </div>
+  </div> 
+
+<!--большая синица-->
+  <div>
+    <img class="scrollImage" src="yakutsk/Rect.svg" style="width: 100%; margin-top: 5%; position: absolute;">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 13%; margin-left: 3%"><b>01 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 15.5%; margin-left: 20%"><b>Большая синица</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 18.8%; margin-left: 20%"><b>Улахан чычып-чаап</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 39%; margin-left: 3%"><b>Parus major</b></p>
+    <img class="scrollImage" src="yakutsk/sinis.png" style="width: 40%; margin-top: 27%; position: absolute; margin-left: 3%;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="yakutsk/big-sinis.png" style="width: 50%; margin-top: 5%">
+    </div>
+  </div>
+  <img class="scrollImage" src="yakutsk/lineto.svg" style="width: 25%; margin-top: 3%">
+<!--снегирь-->
+  <div>
+    <img class="scrollImage" src="yakutsk/sneg.png" style="width: 65%; margin-top: 5%; position: absolute; z-index: 3;">
+    <div class="scrollImage" style="background-image: url(yakutsk/transtick.png); background-size: 100% 100%; width: 50%; height: 25em; transform: rotate(-47.46deg); position: absolute; margin-top: 20%; margin-left: 14.3%; z-index: 2;"></div>
+    <img class="scrollImage" src="yakutsk/pustko.svg" style="position: absolute; width: 8%; margin-top: 32%">
+    <img class="scrollImage" src="yakutsk/pustko.svg" style="position: absolute; width: 8%; margin-top: 28%">
+    <div class="scrollImage" style="background: #FFFFFF; width: 100%; height: 20em; margin-top: 36%; position: absolute; z-index: 1;"></div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">   
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; margin-top: 15.5%; position: absolute; margin-right: 19%"><b>Снегирь</b></p>
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; margin-top: 19%;"><b>Ымыы</b></p>
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; margin-top: 13%; text-align: right;"><b>| 02</b></p>
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 32%;"><b>Pyrrhula pyrrhula</b></p>
+    </div>
+  </div>
+
+<!--ворон-->
+  <div>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 63%; margin-left: 3%;"><b>03 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 65.5%; margin-left: 22%"><b>Ворон</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 68.8%; margin-left: 22%"><b>Суор</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 74%; margin-left: 3%"><b>Corvus corax</b></p>
+    <img class="scrollImage" src="yakutsk/voron.png" style="width: 60%; margin-top: 50%; position: absolute; margin-left: 25%; z-index: 2">
+    <img class="scrollImage" src="yakutsk/voln.svg" style="width: 100%; margin-top: 52%; position: absolute; z-index: 1;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="yakutsk/line.svg" style="width: 0.5%; margin-top: 50%">
+    </div>
+  </div>
+
+<!--певчий сверчок-->
+  <div>
+    <img class="scrollImage" src="yakutsk/rect2.svg" style="width: 100%; margin-top: 30%; position: absolute;">
+    <img class="scrollImage" src="yakutsk/pev-sver.png" style="width: 70%; margin-top: 5%; position: absolute; z-index: 2">
+    <div class="scrollImage" style="background-image: url(yakutsk/transtick.png); background-size: 100% 100%; width: 60%; height: 25em; transform: rotate(58deg) scale(-1, 1); position: absolute; margin-top: 20%; margin-left: -7%; z-index: 1;"></div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; margin-top: 19.5%; position: absolute; margin-right: 20%"><b>Певчий сверчок</b></p>
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; margin-top: 23%;"><b>Улахан өлөҥ чыычааҕа</b></p>
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; margin-top: 17%; text-align: right;"><b>| 04</b></p>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="yakutsk/pev.jpg" style="width: 40%; margin-top: 7%; margin-right: 2%; height: 20em ">
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 30%; margin-right: 2%"><b>Helopsaltes certhiola</b></p>
+    </div>
+  </div>
+
+<!--озерная чайка-->
+  <div>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 43%; margin-left: 3%;"><b>05 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 45.5%; margin-left: 22%"><b>Озерная чайка</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 48.8%; margin-left: 22%"><b>Күөл хоптото</b></p>
+    <img class="scrollImage" src="yakutsk/chaika-ozer.png" style="width: 60%; margin-top: 25%; position: absolute; margin-left: 30%; z-index: 2">
+    <img class="scrollImage" src="yakutsk/line.svg" style="width: 0.5%; margin-top: 25%; position: absolute;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="yakutsk/lines1.svg" style="width: 50%; margin-top: 45%">
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 57%; margin-left: 3%"><b>Chroicocephalus ridibundus</b></p>
+    </div>
+  </div>
+
+<!--беркут-->
+  <div>
+    <img class="scrollImage" src="yakutsk/беркут.png" style="width: 65%; margin-top: 10%; position: absolute; z-index: 2">
+    <img class="scrollImage" src="yakutsk/circle.svg" style="width: 40%; margin-top: 13%; position: absolute; margin-left: 12%">
+    <img class="scrollImage" src="yakutsk/snake.svg" style="width: 45%; margin-top: 53%; position: absolute;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; margin-top: 39.5%; position: absolute; margin-right: 20%"><b>Беркут</b></p>
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; margin-top: 43%; margin-right: 1%"><b>Хотой</b></p>
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; margin-top: 37%; text-align: right;"><b>| 06</b></p>
+    </div>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 8%; "><b>Aquila chrysaetos</b></p>
+  </div>
+
+<!--воронок-->
+  <div>
+    <img class="scrollImage" src="yakutsk/Rect.svg" style="width: 100%; margin-top: 15%; position: absolute;">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 17%; margin-left: 3%;"><b>07 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 19.5%; margin-left: 22%"><b>Воронок</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 22.8%; margin-left: 22%"><b>Дьиэ хараҥаччыта</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 32%; margin-left: 3%"><b>Delichon urbicum</b></p>
+    <img class="scrollImage" src="yakutsk/las.jpg" style="width: 35%; margin-top: 34%; position: absolute; margin-left: 3%; height: -5%">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="yakutsk/воронок.png" style="width: 58%; margin-top: 18%">
+    </div>
+  </div>
+
+<!--воробьи-->
+  <div>
+    <img class="scrollImage" src="yakutsk/line.svg" style="width: 0.5%; margin-top: 20%; position: absolute;">
+    <img class="scrollImage" src="yakutsk/дв.png" style="width: 52%; margin-top: 10%; position: absolute; z-index: 2; transform: scale(-1, 1);">
+    <img class="scrollImage" src="yakutsk/пв.png" style="width: 46%; margin-top: 25%; position: absolute; z-index: 2; transform: scale(-1, 1);">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; margin-top: 25%; position: absolute; margin-right: 20%"><b>Домовой воробей &&<br> Полевой воробей</b></p>
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; margin-top: 34%; margin-right: 1%"><b>Дьиэ барабыайа &&<br> Хонуу барабыайа</b></p>
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; margin-top: 25%; text-align: right;"><b>| 08</b></p>
+      <img class="scrollImage" src="yakutsk/trin.svg" style="width: 35%; margin-top: 48%; position: absolute;">
+    </div>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: -15%; margin-left: 3%"><b>Passer domesticus</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 14%; margin-left: 3%"><b>Passer montanus montanus</b></p>
+  </div>
+
+<!--трясогузка-->
+  <div>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 30%; margin-left: 3%;"><b>09 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 32.5%; margin-left: 22%"><b>Белая трясогузка</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 35.8%; margin-left: 22%"><b>Сылгы чыычааҕа</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 60%;"><b>Motacilla alba</b></p>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="yakutsk/line.svg" style="width: 0.5%; margin-top: 28%; position: absolute;">
+      <img class="scrollImage" src="yakutsk/трясо.png" style="width: 55%; margin-top: 25%; position: absolute; margin-left: 20%; z-index: 2">
+    </div>
+    <img class="scrollImage" src="yakutsk/manyto.svg" style="width: 30%; margin-top: 44%; position: absolute;">
+  </div>
+
+<!--белопоясный стриж-->
+  <div>
+    <img class="scrollImage" src="yakutsk/fo.svg" style="width: 30%; margin-top: 70%; position: absolute;">
+    <img class="scrollImage" src="yakutsk/belpo.png" style="width: 60%; margin-top: 63%; position: absolute; margin-left: -5%; z-index: 2">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 68%; margin-right: 2%"><b>Apus pacificus</b></p>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; margin-top: 87.5%; position: absolute; margin-right: 18%"><b>Белопоясный стриж</b></p>
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; margin-top: 92%;"><b>Таас хараҥаччыта</b></p>
+      <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; margin-top: 85%; text-align: right;"><b>| 10</b></p>
+      <img class="scrollImage" src="yakutsk/st.jpg" style="width: 25%; margin-top: 69%; position: absolute; margin-left: -5%; height: 15%; ">
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<div id="aldan-site" style="display:none;position:absolute;top:2%;left:0;width:100%;height:100%;z-index:10;overflow:auto;">
+<div id="back-to-3d" style="position: fixed; width: 4em; height: 4em; background-color: white; color: black; font-family: inter; border-radius: 20%; margin-top: 1%; margin-left: 2%; text-align: center; z-index: 20;">
+<div style="font-size: 2.5em; margin-top: 20%;"><b>←</b></div>
+</div>
+<div class="fixed-canvas">
+  <div style="font-size: 1.5em; display: flex; justify-content: space-between; font-family: inter; color: white;">
+    <div style="text-align: left;">RS(Y)</div>
+    <div style="text-align: center; flex-grow: 1;">ALDANSKII DISTRICT</div>
+    <div style="text-align: right;">ST // 05-25</div>
+  </div>  
+
+  <div style="padding-top: 1%;">
+    <div style="background-image: url(aldans/aldanskii.png); background-size: 100% 100%; width: 100%; height: 800px; position: relative;">
+      <div style="color: white; font-family: inter; position: absolute; font-size: 10em; margin-top: 600px; text-shadow: 2px 2px 8px #000000;"><b>АЛДАН УЛУУҺА</b></div>
+    </div>
+  </div>
+  <div style="color: white; font-family: inter; text-align: center; margin-top: 1%; font-size: 1.5em">58°40′ с. ш. 125°21′ в. д.</div>
+
+  <!-- 1 -->
+  <div>
+    <div class="scrollImage" style="background: white; width: 5%; height: 5em; margin-top: 2%">
+      <p class="scrollImage" style="color: black; font-family: inter; text-align: right; font-size: 4em; margin-right: 15%;"><b>2</b></p>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <div style="background: white; width: 5%; height: 2em;"></div>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img src="aldans/linet.svg" style="width: 50%; margin-top: 2%">
+    </div>
+  </div> 
+
+<!--ондатра-->
+  <div>
+    <img class="scrollImage" src="aldans/Rect.svg" style="width: 100%; margin-top: 5%; position: absolute;">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 13%; margin-left: 3%"><b>01 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 15.5%; margin-left: 20%"><b>Ондатра</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 18.8%; margin-left: 20%"><b>Андаатар</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 49%; margin-left: 3%"><b>Ondatra zibethicus</b></p>
+    <img class="scrollImage" src="aldans/ondr.jpg" style="width: 33%; margin-top: 27%; position: absolute; margin-left: 3%;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="aldans/obd.png" style="width: 60%; margin-top: 12%; margin-right: 5%;">
+    </div>
+  </div>
+  <img class="scrollImage" src="aldans/lineto.svg" style="width: 25%; margin-top: 5%">
+</div>
+</div>
+
+
+
+
+<div id="nerun-site" style="display:none;position:absolute;top:2%;left:0;width:100%;height:100%;z-index:10;overflow:auto;">
+<div id="back-to-3d" style="position: fixed; width: 4em; height: 4em; background-color: white; color: black; font-family: inter; border-radius: 20%; margin-top: 1%; margin-left: 2%; text-align: center; z-index: 20;">
+<div style="font-size: 2.5em; margin-top: 20%;"><b>←</b></div>
+</div>
+<div class="fixed-canvas">
+  <div style="font-size: 1.5em; display: flex; justify-content: space-between; font-family: inter; color: white;">
+    <div style="text-align: left;">RS(Y)</div>
+    <div style="text-align: center; flex-grow: 1;">NERYUNGRI DISTRICT</div>
+    <div style="text-align: right;">ST // 05-25</div>
+  </div>  
+
+  <div style="padding-top: 1%;">
+    <div style="background-image: url(nerun/nerungr.png); background-size: 100% 100%; width: 100%; height: 800px; position: relative;">
+      <div style="color: white; font-family: inter; position: absolute; font-size: 10em; margin-top: 400px; text-shadow: 2px 2px 8px #000000;"><b>НҮӨРҮҤГҮРҮ УЛУУҺА</b></div>
+    </div>
+  </div>
+  <div style="color: white; font-family: inter; text-align: center; margin-top: 1%; font-size: 1.5em">56°39′30″ с. ш. 124°43′30″ в. д.</div>
+
+  <!-- 1 -->
+  <div>
+    <div class="scrollImage" style="background: white; width: 5%; height: 5em; margin-top: 2%">
+      <p class="scrollImage" style="color: black; font-family: inter; text-align: right; font-size: 4em; margin-right: 15%;"><b>19</b></p>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <div style="background: white; width: 5%; height: 2em;"></div>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img src="aldans/linet.svg" style="width: 50%; margin-top: 2%">
+    </div>
+  </div> 
+
+<!--лось-->
+  <div>
+    <img class="scrollImage" src="aldans/Rect.svg" style="width: 100%; margin-top: 5%; position: absolute;">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 13%; margin-left: 3%"><b>01 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 15.5%; margin-left: 20%"><b>Лось</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 18.8%; margin-left: 20%"><b>Тайах</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 49%; margin-left: 3%"><b>Alces alces</b></p>
+    <img class="scrollImage" src="nerun/losi.jpg" style="width: 33%; margin-top: 27%; position: absolute; margin-left: 3%;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="nerun/losi.png" style="width: 60%; margin-top: 10%;">
+    </div>
+  </div>
+  <img class="scrollImage" src="aldans/lineto.svg" style="width: 25%; margin-top: 4%;">
+</div>
+</div>
+
+
+
+
+<div id="olekmin-site" style="display:none;position:absolute;top:2%;left:0;width:100%;height:100%;z-index:10;overflow:auto;">
+<div id="back-to-3d" style="position: fixed; width: 4em; height: 4em; background-color: white; color: black; font-family: inter; border-radius: 20%; margin-top: 1%; margin-left: 2%; text-align: center; z-index: 20;">
+<div style="font-size: 2.5em; margin-top: 20%;"><b>←</b></div>
+</div>
+<div class="fixed-canvas">
+  <div style="font-size: 1.5em; display: flex; justify-content: space-between; font-family: inter; color: white;">
+    <div style="text-align: left;">RS(Y)</div>
+    <div style="text-align: center; flex-grow: 1;">OLYOKMINSKY DISTRICT</div>
+    <div style="text-align: right;">ST // 05-25</div>
+  </div>  
+
+  <div style="padding-top: 1%;">
+    <div style="background-image: url(olekmin/olek.png); background-size: 100% 100%; width: 100%; height: 800px; position: relative;">
+      <div style="color: white; font-family: inter; position: absolute; font-size: 10em; margin-top: 400px; text-shadow: 2px 2px 8px #000000;"><b>ӨЛҮӨХҮМЭ УЛУУҺА</b></div>
+    </div>
+  </div>
+  <div style="color: white; font-family: inter; text-align: center; margin-top: 1%; font-size: 1.5em">60°23′00″ с. ш. 120°26′00″ в. д.</div>
+
+  <!-- 1 -->
+  <div>
+    <div class="scrollImage" style="background: white; width: 5%; height: 5em; margin-top: 2%">
+      <p class="scrollImage" style="color: black; font-family: inter; text-align: right; font-size: 4em; margin-right: 15%;"><b>24</b></p>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <div style="background: white; width: 5%; height: 2em;"></div>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img src="aldans/linet.svg" style="width: 50%; margin-top: 2%">
+    </div>
+  </div> 
+
+<!--бородачь-->
+  <div>
+    <img class="scrollImage" src="aldans/Rect.svg" style="width: 100%; margin-top: 5%; position: absolute;">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 13%; margin-left: 3%"><b>01 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 15.5%; margin-left: 20%"><b>Бородатая неясыть</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 18.8%; margin-left: 20%"><b>Хаххан</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 49%; margin-left: 3%"><b>Strix nebulosa</b></p>
+    <img class="scrollImage" src="olekmin/borod.jpg" style="width: 33%; margin-top: 27%; position: absolute; margin-left: 3%;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="olekmin/bor.png" style="width: 60%; margin-top: 8%;">
+    </div>
+  </div>
+  <img class="scrollImage" src="aldans/lineto.svg" style="width: 25%;">
+</div>
+</div>
+
+
+
+<div id="lensk-site" style="display:none;position:absolute;top:2%;left:0;width:100%;height:100%;z-index:10;overflow:auto;">
+<div id="back-to-3d" style="position: fixed; width: 4em; height: 4em; background-color: white; color: black; font-family: inter; border-radius: 20%; margin-top: 1%; margin-left: 2%; text-align: center; z-index: 20;">
+<div style="font-size: 2.5em; margin-top: 20%;"><b>←</b></div>
+</div>
+<div class="fixed-canvas">
+  <div style="font-size: 1.5em; display: flex; justify-content: space-between; font-family: inter; color: white;">
+    <div style="text-align: left;">RS(Y)</div>
+    <div style="text-align: center; flex-grow: 1;">LENSKY DISTRICT</div>
+    <div style="text-align: right;">ST // 05-25</div>
+  </div>  
+
+  <div style="padding-top: 1%;">
+    <div style="background-image: url(lenskii/lens.png); background-size: 100% 100%; width: 100%; height: 800px; position: relative;">
+      <div style="color: white; font-family: inter; position: absolute; font-size: 10em; margin-top: 400px; text-shadow: 2px 2px 8px #000000;"><b>ЛИЭНСКЭЙ УЛУУҺА</b></div>
+    </div>
+  </div>
+  <div style="color: white; font-family: inter; text-align: center; margin-top: 1%; font-size: 1.5em">60°43′00″ с. ш. 114°55′00″ в. д.</div>
+
+  <!-- 1 -->
+  <div>
+    <div class="scrollImage" style="background: white; width: 5%; height: 5em; margin-top: 2%">
+      <p class="scrollImage" style="color: black; font-family: inter; text-align: right; font-size: 4em; margin-right: 15%;"><b>14</b></p>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <div style="background: white; width: 5%; height: 2em;"></div>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img src="aldans/linet.svg" style="width: 50%; margin-top: 2%">
+    </div>
+  </div> 
+
+<!--горностай-->
+  <div>
+    <img class="scrollImage" src="aldans/Rect.svg" style="width: 100%; margin-top: 5%; position: absolute;">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 13%; margin-left: 3%"><b>01 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 15.5%; margin-left: 20%"><b>Горностай</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 18.8%; margin-left: 20%"><b>Кырынаас</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 47%; margin-left: 3%"><b>Mustela erminea</b></p>
+    <img class="scrollImage" src="lenskii/gorni.jpg" style="width: 33%; margin-top: 27%; position: absolute; margin-left: 3%;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="lenskii/gorn.png" style="width: 60%; margin-top: 8%;">
+    </div>
+  </div>
+  <img class="scrollImage" src="aldans/lineto.svg" style="width: 25%; margin-top: 4%;">
+</div>
+</div>
+
+
+
+
+<div id="amgin-site" style="display:none;position:absolute;top:2%;left:0;width:100%;height:100%;z-index:10;overflow:auto;">
+<div id="back-to-3d" style="position: fixed; width: 4em; height: 4em; background-color: white; color: black; font-family: inter; border-radius: 20%; margin-top: 1%; margin-left: 2%; text-align: center; z-index: 20;">
+<div style="font-size: 2.5em; margin-top: 20%;"><b>←</b></div>
+</div>
+<div class="fixed-canvas">
+  <div style="font-size: 1.5em; display: flex; justify-content: space-between; font-family: inter; color: white;">
+    <div style="text-align: left;">RS(Y)</div>
+    <div style="text-align: center; flex-grow: 1;">AMGINSKY ULUS</div>
+    <div style="text-align: right;">ST // 05-25</div>
+  </div>  
+
+  <div style="padding-top: 1%;">
+    <div style="background-image: url(amgins/amgin.png); background-size: 100% 100%; width: 100%; height: 800px; position: relative;">
+      <div style="color: white; font-family: inter; position: absolute; font-size: 10em; margin-top: 600px; text-shadow: 2px 2px 8px #000000;"><b>АММА УЛУУҺА</b></div>
+    </div>
+  </div>
+  <div style="color: white; font-family: inter; text-align: center; margin-top: 1%; font-size: 1.5em">60°24′ с. ш. 130°54′ в. д.</div>
+
+  <!-- 1 -->
+  <div>
+    <div class="scrollImage" style="background: white; width: 5%; height: 5em; margin-top: 2%">
+      <p class="scrollImage" style="color: black; font-family: inter; text-align: right; font-size: 4em; margin-right: 15%;"><b>4</b></p>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <div style="background: white; width: 5%; height: 2em;"></div>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img src="aldans/linet.svg" style="width: 50%; margin-top: 2%">
+    </div>
+  </div> 
+
+<!--росомаха-->
+  <div>
+    <img class="scrollImage" src="aldans/Rect.svg" style="width: 100%; margin-top: 5%; position: absolute;">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 13%; margin-left: 3%"><b>01 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 15.5%; margin-left: 20%"><b>Росомаха</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 18.8%; margin-left: 20%"><b>Сиэгэн</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 47%; margin-left: 3%"><b>Gulo gulo</b></p>
+    <img class="scrollImage" src="amgins/rosma.png" style="width: 33%; margin-top: 27%; position: absolute; margin-left: 3%;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="amgins/ros.png" style="width: 60%; margin-top: 12%;">
+    </div>
+  </div>
+  <img class="scrollImage" src="aldans/lineto.svg" style="width: 25%; margin-top: 10%;">
+</div>
+</div>
+
+
+
+
+<div id="mirnin-site" style="display:none;position:absolute;top:2%;left:0;width:100%;height:100%;z-index:10;overflow:auto;">
+<div id="back-to-3d" style="position: fixed; width: 4em; height: 4em; background-color: white; color: black; font-family: inter; border-radius: 20%; margin-top: 1%; margin-left: 2%; text-align: center; z-index: 20;">
+<div style="font-size: 2.5em; margin-top: 20%;"><b>←</b></div>
+</div>
+<div class="fixed-canvas">
+  <div style="font-size: 1.5em; display: flex; justify-content: space-between; font-family: inter; color: white;">
+    <div style="text-align: left;">RS(Y)</div>
+    <div style="text-align: center; flex-grow: 1;">MIRNY DISTRICT</div>
+    <div style="text-align: right;">ST // 05-25</div>
+  </div>  
+
+  <div style="padding-top: 1%;">
+    <div style="background-image: url(mirnin/mirni.png); background-size: 100% 100%; width: 100%; height: 800px; position: relative;">
+      <div style="color: white; font-family: inter; position: absolute; font-size: 10em; margin-top: 400px; text-shadow: 2px 2px 8px #000000;"><b>МИИРИНЭЙ УЛУУҺА</b></div>
+    </div>
+  </div>
+  <div style="color: white; font-family: inter; text-align: center; margin-top: 1%; font-size: 1.5em">62°32′00″ с. ш. 113°57′00″ в. д.</div>
+
+  <!-- 1 -->
+  <div>
+    <div class="scrollImage" style="background: white; width: 5%; height: 5em; margin-top: 2%">
+      <p class="scrollImage" style="color: black; font-family: inter; text-align: right; font-size: 4em; margin-right: 15%;"><b>16</b></p>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <div style="background: white; width: 5%; height: 2em;"></div>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img src="aldans/linet.svg" style="width: 50%; margin-top: 2%">
+    </div>
+  </div> 
+
+<!--лиса-->
+  <div>
+    <img class="scrollImage" src="aldans/Rect.svg" style="width: 100%; margin-top: 5%; position: absolute;">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 13%; margin-left: 3%"><b>01 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 15.5%; margin-left: 20%"><b>Лисица</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 18.8%; margin-left: 20%"><b>СаҺыл</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 47%; margin-left: 3%"><b>Vulpes vulpes</b></p>
+    <img class="scrollImage" src="mirnin/lis.jpg" style="width: 33%; margin-top: 27%; position: absolute; margin-left: 3%;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="mirnin/lisa.png" style="width: 60%; margin-top: 12%;">
+    </div>
+  </div>
+  <img class="scrollImage" src="aldans/lineto.svg" style="width: 25%; margin-top: 7%;">
+</div>
+</div>
+
+
+
+
+<div id="olenek-site" style="display:none;position:absolute;top:2%;left:0;width:100%;height:100%;z-index:10;overflow:auto;">
+<div id="back-to-3d" style="position: fixed; width: 4em; height: 4em; background-color: white; color: black; font-family: inter; border-radius: 20%; margin-top: 1%; margin-left: 2%; text-align: center; z-index: 20;">
+<div style="font-size: 2.5em; margin-top: 20%;"><b>←</b></div>
+</div>
+<div class="fixed-canvas">
+  <div style="font-size: 1.5em; display: flex; justify-content: space-between; font-family: inter; color: white;">
+    <div style="text-align: left;">RS(Y)</div>
+    <div style="text-align: center; flex-grow: 1;">OLENEK ULUS</div>
+    <div style="text-align: right;">ST // 05-25</div>
+  </div>  
+
+  <div style="padding-top: 1%;">
+    <div style="background-image: url(olenek/olenek.png); background-size: 100% 100%; width: 100%; height: 800px; position: relative;">
+      <div style="color: white; font-family: inter; position: absolute; font-size: 10em; margin-top: 600px; text-shadow: 2px 2px 8px #000000;"><b>ӨЛӨӨН УЛУУҺА</b></div>
+    </div>
+  </div>
+  <div style="color: white; font-family: inter; text-align: center; margin-top: 1%; font-size: 1.5em">68°30′15″ с. ш. 112°26′50″ в. д.</div>
+
+  <!-- 1 -->
+  <div>
+    <div class="scrollImage" style="background: white; width: 5%; height: 5em; margin-top: 2%">
+      <p class="scrollImage" style="color: black; font-family: inter; text-align: right; font-size: 4em; margin-right: 15%;"><b>16</b></p>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <div style="background: white; width: 5%; height: 2em;"></div>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img src="aldans/linet.svg" style="width: 50%; margin-top: 2%">
+    </div>
+  </div> 
+
+<!--олень-->
+  <div>
+    <img class="scrollImage" src="aldans/Rect.svg" style="width: 100%; margin-top: 5%; position: absolute;">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 13%; margin-left: 3%"><b>01 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 15.5%; margin-left: 20%"><b>Северный олень</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 18.8%; margin-left: 20%"><b>Кыыл таба</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 49%; margin-left: 3%"><b>Rangifer tarandus</b></p>
+    <img class="scrollImage" src="olenek/sevol.jpg" style="width: 31%; margin-top: 27%; position: absolute; margin-left: 3%;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="olenek/sev.png" style="width: 60%; margin-top: 8%;">
+    </div>
+  </div>
+  <img class="scrollImage" src="aldans/lineto.svg" style="width: 25%; margin-top: 1%;">
+</div>
+</div>
+
+
+
+<div id="bulun-site" style="display:none;position:absolute;top:2%;left:0;width:100%;height:100%;z-index:10;overflow:auto;">
+<div id="back-to-3d" style="position: fixed; width: 4em; height: 4em; background-color: white; color: black; font-family: inter; border-radius: 20%; margin-top: 1%; margin-left: 2%; text-align: center; z-index: 20;">
+<div style="font-size: 2.5em; margin-top: 20%;"><b>←</b></div>
+</div>
+<div class="fixed-canvas">
+  <div style="font-size: 1.5em; display: flex; justify-content: space-between; font-family: inter; color: white;">
+    <div style="text-align: left;">RS(Y)</div>
+    <div style="text-align: center; flex-grow: 1;">BULUN ULUS</div>
+    <div style="text-align: right;">ST // 05-25</div>
+  </div>  
+
+  <div style="padding-top: 1%;">
+    <div style="background-image: url(anabar/anabar.png); background-size: 100% 100%; width: 100%; height: 800px; position: relative;">
+      <div style="color: white; font-family: inter; position: absolute; font-size: 10em; margin-top: 600px; text-shadow: 2px 2px 8px #000000;"><b>БУЛУҤ УЛУУҺА</b></div>
+    </div>
+  </div>
+  <div style="color: white; font-family: inter; text-align: center; margin-top: 1%; font-size: 1.5em">70°40′54″ с. ш. 127°21′21″ в. д.</div>
+
+  <!-- 1 -->
+  <div>
+    <div class="scrollImage" style="background: white; width: 5%; height: 5em; margin-top: 2%">
+      <p class="scrollImage" style="color: black; font-family: inter; text-align: right; font-size: 4em; margin-right: 15%;"><b>6</b></p>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <div style="background: white; width: 5%; height: 2em;"></div>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img src="aldans/linet.svg" style="width: 50%; margin-top: 2%">
+    </div>
+  </div> 
+
+<!--песец-->
+  <div>
+    <img class="scrollImage" src="aldans/Rect.svg" style="width: 100%; margin-top: 5%; position: absolute;">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 13%; margin-left: 3%"><b>01 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 15.5%; margin-left: 20%"><b>Песец</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 18.8%; margin-left: 20%"><b>Кырса</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 49%; margin-left: 3%"><b>Vulpes lagopus</b></p>
+    <img class="scrollImage" src="anabar/pec.jpg" style="width: 31%; margin-top: 27%; position: absolute; margin-left: 3%;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="anabar/pece.png" style="width: 60%; margin-top: 12%;">
+    </div>
+  </div>
+  <img class="scrollImage" src="aldans/lineto.svg" style="width: 25%; margin-top: 6%;">
+</div>
+</div>
+
+
+
+
+<div id="anabar-site" style="display:none;position:absolute;top:2%;left:0;width:100%;height:100%;z-index:10;overflow:auto;">
+<div id="back-to-3d" style="position: fixed; width: 4em; height: 4em; background-color: white; color: black; font-family: inter; border-radius: 20%; margin-top: 1%; margin-left: 2%; text-align: center; z-index: 20;">
+<div style="font-size: 2.5em; margin-top: 20%;"><b>←</b></div>
+</div>
+<div class="fixed-canvas">
+  <div style="font-size: 1.5em; display: flex; justify-content: space-between; font-family: inter; color: white;">
+    <div style="text-align: left;">RS(Y)</div>
+    <div style="text-align: center; flex-grow: 1;">ANABAR ULUS</div>
+    <div style="text-align: right;">ST // 05-25</div>
+  </div>  
+
+  <div style="padding-top: 1%;">
+    <div style="background-image: url(anabar/anabar.png); background-size: 100% 100%; width: 100%; height: 800px; position: relative;">
+      <div style="color: white; font-family: inter; position: absolute; font-size: 10em; margin-top: 600px; text-shadow: 2px 2px 8px #000000;"><b>АНААБЫР УЛУУҺА</b></div>
+    </div>
+  </div>
+  <div style="color: white; font-family: inter; text-align: center; margin-top: 1%; font-size: 1.5em">72°07′ с. ш. 114°21′ в. д.</div>
+
+  <!-- 1 -->
+  <div>
+    <div class="scrollImage" style="background: white; width: 5%; height: 5em; margin-top: 2%">
+      <p class="scrollImage" style="color: black; font-family: inter; text-align: right; font-size: 4em; margin-right: 15%;"><b>5</b></p>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <div style="background: white; width: 5%; height: 2em;"></div>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img src="aldans/linet.svg" style="width: 50%; margin-top: 2%">
+    </div>
+  </div> 
+
+<!--песец-->
+  <div>
+    <img class="scrollImage" src="aldans/Rect.svg" style="width: 100%; margin-top: 5%; position: absolute;">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 13%; margin-left: 3%"><b>01 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 15.5%; margin-left: 20%"><b>Песец</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 18.8%; margin-left: 20%"><b>Кырса</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 49%; margin-left: 3%"><b>Vulpes lagopus</b></p>
+    <img class="scrollImage" src="anabar/pec.jpg" style="width: 31%; margin-top: 27%; position: absolute; margin-left: 3%;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="anabar/pece.png" style="width: 60%; margin-top: 12%;">
+    </div>
+  </div>
+  <img class="scrollImage" src="aldans/lineto.svg" style="width: 25%; margin-top: 6%;">
+</div>
+</div>
+
+
+
+
+<div id="ustyan-site" style="display:none;position:absolute;top:2%;left:0;width:100%;height:100%;z-index:10;overflow:auto;">
+<div id="back-to-3d" style="position: fixed; width: 4em; height: 4em; background-color: white; color: black; font-family: inter; border-radius: 20%; margin-top: 1%; margin-left: 2%; text-align: center; z-index: 20;">
+<div style="font-size: 2.5em; margin-top: 20%;"><b>←</b></div>
+</div>
+<div class="fixed-canvas">
+  <div style="font-size: 1.5em; display: flex; justify-content: space-between; font-family: inter; color: white;">
+    <div style="text-align: left;">RS(Y)</div>
+    <div style="text-align: center; flex-grow: 1;">UST-YANSKY ULUS</div>
+    <div style="text-align: right;">ST // 05-25</div>
+  </div>  
+
+  <div style="padding-top: 1%;">
+    <div style="background-image: url(ustyan/ustyan.png); background-size: 100% 100%; width: 100%; height: 800px; position: relative;">
+      <div style="color: white; font-family: inter; position: absolute; font-size: 10em; margin-top: 400px; text-shadow: 2px 2px 8px #000000;"><b>УСУЙААНА УЛУУҺА</b></div>
+    </div>
+  </div>
+  <div style="color: white; font-family: inter; text-align: center; margin-top: 1%; font-size: 1.5em">71°25′ с. ш. 136°10′ в. д. </div>
+
+  <!-- 1 -->
+  <div>
+    <div class="scrollImage" style="background: white; width: 5%; height: 5em; margin-top: 2%">
+      <p class="scrollImage" style="color: black; font-family: inter; text-align: right; font-size: 4em; margin-right: 15%;"><b>31</b></p>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <div style="background: white; width: 5%; height: 2em;"></div>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img src="aldans/linet.svg" style="width: 50%; margin-top: 2%">
+    </div>
+  </div> 
+
+<!--овцебык-->
+  <div>
+    <img class="scrollImage" src="aldans/Rect.svg" style="width: 100%; margin-top: 5%; position: absolute;">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 13%; margin-left: 3%"><b>01 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 15.5%; margin-left: 20%"><b>Овцебык</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 18.8%; margin-left: 20%"><b>Овцебык</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 49%; margin-left: 3%"><b>Ovibos moschatus</b></p>
+    <img class="scrollImage" src="ustyan/ovche.jpg" style="width: 31%; margin-top: 27%; position: absolute; margin-left: 3%;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="ustyan/ovh.png" style="width: 45%; margin-top: 8%;">
+    </div>
+  </div>
+  <img class="scrollImage" src="aldans/lineto.svg" style="width: 25%; margin-top: 6%;">
+</div>
+</div>
+
+
+
+
+<div id="allaihov-site" style="display:none;position:absolute;top:2%;left:0;width:100%;height:100%;z-index:10;overflow:auto;">
+<div id="back-to-3d" style="position: fixed; width: 4em; height: 4em; background-color: white; color: black; font-family: inter; border-radius: 20%; margin-top: 1%; margin-left: 2%; text-align: center; z-index: 20;">
+<div style="font-size: 2.5em; margin-top: 20%;"><b>←</b></div>
+</div>
+<div class="fixed-canvas">
+  <div style="font-size: 1.5em; display: flex; justify-content: space-between; font-family: inter; color: white;">
+    <div style="text-align: left;">RS(Y)</div>
+    <div style="text-align: center; flex-grow: 1;">ALLAIKHOVSKY ULUS</div>
+    <div style="text-align: right;">ST // 05-25</div>
+  </div>  
+
+  <div style="padding-top: 1%;">
+    <div style="background-image: url(allaihov/allaih.png); background-size: 100% 100%; width: 100%; height: 800px; position: relative;">
+      <div style="color: white; font-family: inter; position: absolute; font-size: 10em; margin-top: 400px; text-shadow: 2px 2px 8px #000000;"><b>АЛЛАЙЫАХА УЛУУҺА</b></div>
+    </div>
+  </div>
+  <div style="color: white; font-family: inter; text-align: center; margin-top: 1%; font-size: 1.5em">70°50′ с. ш. 146°58′ в. д.</div>
+
+  <!-- 1 -->
+  <div>
+    <div class="scrollImage" style="background: white; width: 5%; height: 5em; margin-top: 2%">
+      <p class="scrollImage" style="color: black; font-family: inter; text-align: right; font-size: 4em; margin-right: 15%;"><b>3</b></p>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <div style="background: white; width: 5%; height: 2em;"></div>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img src="aldans/linet.svg" style="width: 50%; margin-top: 2%">
+    </div>
+  </div> 
+
+<!--белый медведь-->
+  <div>
+    <img class="scrollImage" src="aldans/Rect.svg" style="width: 100%; margin-top: 5%; position: absolute;">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 13%; margin-left: 3%"><b>01 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 15.5%; margin-left: 20%"><b>Белый медведь</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 18.8%; margin-left: 20%"><b>Уруҥ эһэ</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 47%; margin-left: 3%"><b>Ursus maritimus</b></p>
+    <img class="scrollImage" src="allaihov/wb.jpg" style="width: 31%; margin-top: 27%; position: absolute; margin-left: 3%;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="allaihov/whib.png" style="width: 45%; margin-top: 8%;">
+    </div>
+  </div>
+  <img class="scrollImage" src="aldans/lineto.svg" style="width: 25%; ">
+</div>
+</div>
+
+
+
+<div id="namsi-site" style="display:none;position:absolute;top:2%;left:0;width:100%;height:100%;z-index:10;overflow:auto;">
+<div id="back-to-3d" style="position: fixed; width: 4em; height: 4em; background-color: white; color: black; font-family: inter; border-radius: 20%; margin-top: 1%; margin-left: 2%; text-align: center; z-index: 20;">
+<div style="font-size: 2.5em; margin-top: 20%;"><b>←</b></div>
+</div>
+<div class="fixed-canvas">
+  <div style="font-size: 1.5em; display: flex; justify-content: space-between; font-family: inter; color: white;">
+    <div style="text-align: left;">RS(Y)</div>
+    <div style="text-align: center; flex-grow: 1;">NAMSKY ULUS</div>
+    <div style="text-align: right;">ST // 05-25</div>
+  </div>  
+
+  <div style="padding-top: 1%;">
+    <div style="background-image: url(namsi/namsi.png); background-size: 100% 100%; width: 100%; height: 800px; position: relative;">
+      <div style="color: white; font-family: inter; position: absolute; font-size: 10em; margin-top: 600px; text-shadow: 2px 2px 8px #000000;"><b>НАМ УЛУУҺА</b></div>
+    </div>
+  </div>
+  <div style="color: white; font-family: inter; text-align: center; margin-top: 1%; font-size: 1.5em">58°40′00″ с. ш. 125°21′00″ в. д.</div>
+
+  <!-- 1 -->
+  <div>
+    <div class="scrollImage" style="background: white; width: 5%; height: 5em; margin-top: 2%">
+      <p class="scrollImage" style="color: black; font-family: inter; text-align: right; font-size: 4em; margin-right: 15%;"><b>18</b></p>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <div style="background: white; width: 5%; height: 2em;"></div>
+    </div>
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img src="aldans/linet.svg" style="width: 50%; margin-top: 2%">
+    </div>
+  </div> 
+
+<!--куропатка-->
+  <div>
+    <img class="scrollImage" src="aldans/Rect.svg" style="width: 100%; margin-top: 5%; position: absolute;">
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 10em; position: absolute; margin-top: 13%; margin-left: 3%"><b>01 |</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 3em; position: absolute; margin-top: 15.5%; margin-left: 20%"><b>Куропатка</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 2em; position: absolute; margin-top: 18.8%; margin-left: 20%"><b>Хабдьы</b></p>
+    <p class="scrollImage" style="color: white; font-family: inter; font-size: 1.5em; position: absolute; margin-top: 48.5%; margin-left: 3%"><b>Perdix</b></p>
+    <img class="scrollImage" src="namsi/kurp.jpg" style="width: 31%; margin-top: 27%; position: absolute; margin-left: 3%;">
+    <div class="scrollImage" style="display: flex; justify-content: flex-end;">
+      <img class="scrollImage" src="namsi/kurop.png" style="width: 30%; margin-top: 8%; margin-right: 5%;">
+    </div>
+  </div>
+  <img class="scrollImage" src="aldans/lineto.svg" style="width: 25%; margin-top: 7%;">
+</div>
+</div>
+
+
+<script src="./index.js" type="module">
+</script>
+</body>
+</html>
